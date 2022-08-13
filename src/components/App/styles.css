@@ -1,0 +1,15 @@
+.card {
+	background: rgba(255, 255, 255, 0.2) !important;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: .3rem;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	color: #FFF;
+}
+
+.App {
+	background: rgb(23, 249, 255);
+	background: linear-gradient(0deg, rgba(23, 249, 255, 1) 0%, rgba(0, 180, 252, 1) 25%, rgba(0, 91, 197, 1) 50%, rgba(1, 38, 119, 1) 75%, rgba(0, 20, 73, 1) 100%);
+	min-height: 100vh;
+}
