@@ -31,6 +31,10 @@ export const SearchContainer = styled.div`
             width: 75%;
         }
 
+        input::placeholder {
+            color: #f7f7f7;
+        }
+
         input:focus {
             outline:none !important;
         }

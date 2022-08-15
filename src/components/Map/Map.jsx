@@ -4,15 +4,30 @@ import L from "leaflet";
 import "./styles.css";
 
 import RoutingControl from "./RoutingControl";
+import { TailSpin } from "react-loader-spinner";
 
 function MapComponent(props) {
 	const map = useMap();
+	const [mapControl, setMapControl] = useState({});
+	const control = L.Routing.control(props.mapControl);
+
 	map.setView(props.center, props.zoom);
-	console.log("map center:", map.getCenter());
+
+	// if (mapControl !== {}) {
+	// 	map.remove(mapControl);
+	// }
+
+	// map.addControl(control);
+	// setMapControl(control);
+
 	return null;
 }
 
 export default function Map(props) {
+	const [tripID, setTripID] = useState([]);
+	const [mapControl, setMapControl] = useState({});
+	const [peopleLoc, setPeopleLoc] = useState([]);
+
 	var redIcon = new L.Icon({
 		iconUrl:
 			"https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
@@ -23,10 +38,6 @@ export default function Map(props) {
 		popupAnchor: [1, -34],
 		shadowSize: [41, 41],
 	});
-
-	const rMachine = useRef();
-	
-	const [tripID, setTripID] = useState([]);
 
 	// trip_id: filtra paradas de um itinerário específico (ex - linha 105: https://api.mobilidade.rio/sequence/?trip_id=2200105101020101)
 	// O valor de trip_id corresponde ao results: {id: ...} do endpoint trip
@@ -40,13 +51,21 @@ export default function Map(props) {
 
 	useEffect(() => {
 		getTripWithId(props.trip_id);
-		console.log(props.trip_id);
 	}, [props.trip_id]);
 
 	return (
 		<>
 			{tripID.length === 0 ? (
-				<div>Loading...</div>
+				<TailSpin
+					height="80"
+					width="80"
+					color="rgba(0, 20, 73, 1)"
+					ariaLabel="tail-spin-loading"
+					radius="1"
+					wrapperStyle={{}}
+					wrapperClass=""
+					visible={true}
+				/>
 			) : (
 				<div>
 					<MapContainer
@@ -65,12 +84,10 @@ export default function Map(props) {
 								tripID[0].stop.longitude,
 							]}
 							zoom={13}
+							mapControl={mapControl}
 						/>
 
-						<RoutingControl
-							bus_stops={tripID}
-							color={"#4169E1"}
-						/>
+						<RoutingControl bus_stops={tripID} color={"#4169E1"} />
 
 						<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 						{tripID.map((e) => (
@@ -99,30 +116,3 @@ export default function Map(props) {
 		</>
 	);
 }
-
-// export function getStaticPaths() {
-// 	const maps = fetch("https://api.mobilidade.rio/sequence/");
-// 	const paths = maps.map((e) => {
-// 		const tripIDTeste = e.id;
-// 		return {
-// 			params: tripIDTeste,
-// 		};
-// 	});
-// 	console.log(maps);
-// 	return {
-// 		paths,
-// 		fallback: false,
-// 	};
-// }
-
-// export const getStaticProps = async (params) => {
-// 	const tripIDTeste = params.tripIDTeste;
-// 	const results = await fetch(
-// 		`https://api.mobilidade.rio/sequence/?trip_id=${tripIDTeste}`
-// 	);
-// 	return {
-// 		props: {
-// 			tripIDTeste: results,
-// 		},
-// 	};
-// };

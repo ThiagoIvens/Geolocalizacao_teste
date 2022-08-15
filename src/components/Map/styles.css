@@ -1,6 +1,5 @@
 .map-container { 
-    max-height: 400px;
-    min-height: 400px;
+    min-height: 600px;
     border-radius: .3rem; 
 }
 

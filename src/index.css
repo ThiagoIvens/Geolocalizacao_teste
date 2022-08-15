@@ -20,7 +20,7 @@ body {
 	margin: 0;
 	min-width: 320px;
 	min-height: 100vh;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 h1 {
@@ -45,15 +45,16 @@ h1 {
 
 .btn-trips {
 	cursor: pointer;
-	color: #FFF;
+	color: #000;
 	font-size: 20px;
-	padding: 10px 40px;
+	padding: 10px;
 	border-radius: .3rem;
-	background: rgba(255, 255, 255, .3);
-	border: 1px solid rgba(255, 255, 255, .3);
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(255, 255, 255, 1);
 	backdrop-filter: blur(10px);
 	width: 100%;
 	height: 100%;
+	margin-top: 1rem;
 }
 
 #btns {
@@ -63,4 +64,60 @@ h1 {
 .row {
 	margin-right: unset;
 	margin-left: unset;
+}
+
+.btn-trips .number {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	background-color: rgba(0, 20, 73, 1);
+	border-radius: .3rem;
+	color: #FFF;
+	fill: #FFF;
+	padding: 1rem;
+}
+
+.btn-trips .number svg {
+	margin-right: .3rem;
+	width: 35px;
+	height: 35px;
+}
+
+.btn-trips .number p {
+	font-size: larger;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+.btn-trips .trip-name {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	width: 100%;
+	height: 100%;
+}
+
+.btn-trips .trip-name p {
+	font-size: larger;
+	text-align: start;
+	margin-bottom: 0;
+}
+
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+	background-color: rgba(0, 20, 73, 1);
+	border-radius: .3rem .3rem 0 0;
+	color: #FFF;
+	border: 1px solid rgba(0, 20, 73, 1);
+}
+
+.nav-tabs .nav-link {
+	color: #FFF;
+	font-weight: 600;
+}
+
+.btn-trips:hover {
+	filter: brightness(.9);
 }

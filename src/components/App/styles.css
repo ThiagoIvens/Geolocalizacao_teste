@@ -12,4 +12,6 @@
 	background: rgb(23, 249, 255);
 	background: linear-gradient(0deg, rgba(23, 249, 255, 1) 0%, rgba(0, 180, 252, 1) 25%, rgba(0, 91, 197, 1) 50%, rgba(1, 38, 119, 1) 75%, rgba(0, 20, 73, 1) 100%);
 	min-height: 100vh;
+	height: 100%;
+	padding-bottom: 3rem;
 }
